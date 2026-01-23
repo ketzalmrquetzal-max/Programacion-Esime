@@ -12,14 +12,21 @@ private:
     void validarRango(double valor) const;  // Valida que el valor esté en rango permitido
 
 public:
+    // Constructor - Inicializa los dos números
     Sumador(double a = 0, double b = 0);
     
+    // Obtiene el valor de a
     double getA() const;
+    // Obtiene el valor de b
     double getB() const;
+    // Establece el valor de a con validación
     void setA(double valor);
+    // Establece el valor de b con validación
     void setB(double valor);
     
+    // Retorna la suma de a y b
     double sumar() const;
+    // Implementa el método de la interfaz
     double operar() override;
     
     Sumador operator+(const Sumador& otro) const;  // Permite s1 + s2

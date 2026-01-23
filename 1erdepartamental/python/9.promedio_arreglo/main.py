@@ -2,9 +2,9 @@
 Programa: Promedio con Arreglo
 Demuestra estadísticas con arreglo dinámico
 """
-
+#Importa la clase 
 from core.estadisticas import EstadisticasArreglo
-
+#Punto de entrada del programa
 if __name__ == "__main__":
     e = EstadisticasArreglo([10, 25, 5, 30, 15])
 

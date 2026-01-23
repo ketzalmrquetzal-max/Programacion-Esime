@@ -6,6 +6,7 @@
 
 #include "../utils/Parametros.h"
 
+// realiza la multiplicacion
 double Multiplicacion::ejecutar(const Parametros& params) {
     double resultado = 0.0;
 

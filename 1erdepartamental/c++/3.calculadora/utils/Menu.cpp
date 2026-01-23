@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include <iostream>
 
+// Muestra las opciones del menu
 void Menu::mostrar() {
     std::cout << "\n=== CALCULADORA ===" << std::endl;
     std::cout << "1. Suma" << std::endl;
@@ -11,6 +12,7 @@ void Menu::mostrar() {
     std::cout << "Selecciona una opción: ";
 }
 
+// Ejecuta el bucle principal del menú
 void Menu::ejecutar() {
     int opcion;
     double a, b, resultado;

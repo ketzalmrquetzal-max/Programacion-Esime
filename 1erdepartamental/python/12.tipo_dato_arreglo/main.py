@@ -2,10 +2,11 @@
 Programa: Tipo Dato Arreglo
 Demuestra colección tipada de objetos personalizados
 """
-
+#Importa las clases
 from core.coleccion import ColeccionProductos, Producto
 
-if __name__ == "__main__":
+#Funcion principal
+def main ():
     inventario = ColeccionProductos()
 
     inventario.agregar(Producto("Laptop", 15000))
@@ -17,3 +18,7 @@ if __name__ == "__main__":
     print(f"\nTotal productos: {inventario.cantidad()}")
     print(f"Precio total: ${inventario.precio_total():.2f}")
     print(f"Precio promedio: ${inventario.precio_promedio():.2f}")
+
+#Punto de Entrada
+if __name__ == "__main__":
+    main ()

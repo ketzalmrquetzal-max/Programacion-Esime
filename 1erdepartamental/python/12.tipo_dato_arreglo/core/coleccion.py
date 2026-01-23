@@ -1,6 +1,6 @@
 # Colección tipada de productos
 
-
+#Clase 1
 class Producto:
     def __init__(self, nombre, precio):
         self.__nombre = nombre
@@ -20,16 +20,16 @@ class Producto:
     def __str__(self):
         return f"{self.__nombre}: ${self.__precio:.2f}"
 
-
+#Clase 2
 class ColeccionProductos:
     def __init__(self):
-        self.__productos = []
+        self.__productos = [] #Lista Vacia con la que el objeto nace
 
     def agregar(self, producto):
-        self.__productos.append(producto)
+        self.__productos.append(producto)#agregamos caracteres a esa lñista vacia 
 
     def cantidad(self):
-        return len(self.__productos)
+        return len(self.__productos)#numero de elementos en la lista 
 
     def precio_total(self):
         return sum(p.precio for p in self.__productos)

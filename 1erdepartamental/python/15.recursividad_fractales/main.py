@@ -3,8 +3,9 @@ Programa: Recursividad Fractales
 Demuestra generación recursiva de fractales
 """
 
+#Imporate de las clases 
 from core.fractales import FractalesRecursivos
-
+#Punto de entrada del programa 
 if __name__ == "__main__":
     fractales = FractalesRecursivos()
 

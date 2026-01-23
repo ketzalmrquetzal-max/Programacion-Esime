@@ -2,8 +2,10 @@
 #include "core/ColeccionProductos.h"
 
 int main() {
+    // Crea coleccion
     ColeccionProductos inventario;
     
+    // Agrega productos
     inventario.agregar(Producto("Laptop", 15000));
     inventario.agregar(Producto("Mouse", 250));
     inventario.agregar(Producto("Teclado", 800));

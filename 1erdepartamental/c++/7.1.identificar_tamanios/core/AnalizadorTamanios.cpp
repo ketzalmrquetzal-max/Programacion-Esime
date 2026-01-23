@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+// Analiza tipos basicos de C++
 void AnalizadorTamanios::analizarTiposBasicos() const {
     std::cout << "=== TIPOS BÁSICOS ===" << std::endl;
     std::cout << "int: " << sizeof(int) << " bytes" << std::endl;
@@ -13,6 +14,7 @@ void AnalizadorTamanios::analizarTiposBasicos() const {
     std::cout << "long: " << sizeof(long) << " bytes" << std::endl << std::endl;
 }
 
+// Analisa strings de diferentes tamanios
 void AnalizadorTamanios::analizarString() const {
     std::cout << "=== STRINGS ===" << std::endl;
     std::string vacio = "";

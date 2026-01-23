@@ -1,30 +1,34 @@
 # Ordenador merge sort indirecto
-
-
 class OrdenadorIndirectoMerge:
     def __init__(self, datos):
         self.__datos_originales = datos
+        # Crea lista de índices 
         self.__indices = list(range(len(datos)))
-
+    
+    # Método principal 
     def ordenar(self):
         if len(self.__indices) > 1:
             self._merge_sort(0, len(self.__indices) - 1)
-
+    
+    # Función recursiva 
     def _merge_sort(self, izq, der):
         if izq >= der:
             return
         medio = (izq + der) // 2
+        # Ordena la mitad izquierda
         self._merge_sort(izq, medio)
+        # Ordena la mitad derecha
         self._merge_sort(medio + 1, der)
+        # Fusiona ambas mitades ordenadas
         self._fusionar(izq, medio, der)
-
+    
+    # Fusiona dos suba  rreglos 
     def _fusionar(self, izq, medio, der):
         izq_arr = self.__indices[izq : medio + 1]
         der_arr = self.__indices[medio + 1 : der + 1]
-
         i = j = 0
         k = izq
-
+        # Compara y mezcla los elementos de ambos subareglos
         while i < len(izq_arr) and j < len(der_arr):
             if (
                 self.__datos_originales[izq_arr[i]]
@@ -36,23 +40,25 @@ class OrdenadorIndirectoMerge:
                 self.__indices[k] = der_arr[j]
                 j += 1
             k += 1
-
+        # Copia los elementos restantes de izq
         while i < len(izq_arr):
             self.__indices[k] = izq_arr[i]
             i += 1
             k += 1
-
+        # Copia los elementos restantes de der
         while j < len(der_arr):
             self.__indices[k] = der_arr[j]
             j += 1
             k += 1
-
+    
+   
     @property
     def indices(self):
         return self.__indices.copy()
-
+    
+    # Retorna los datos en orden según los índices
     def mostrar_ordenado(self):
         return [self.__datos_originales[i] for i in self.__indices]
-
+    
     def mostrar_original(self):
         return self.__datos_originales.copy()

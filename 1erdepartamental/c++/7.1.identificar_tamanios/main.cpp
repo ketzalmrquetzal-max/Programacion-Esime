@@ -1,6 +1,7 @@
 #include "core/AnalizadorTamanios.h"
 
 int main() {
+    // Crea el analizador y ejecuta analisys
     AnalizadorTamanios analizador;
     analizador.analizarTiposBasicos();
     analizador.analizarString();

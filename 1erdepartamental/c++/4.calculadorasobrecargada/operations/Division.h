@@ -8,8 +8,10 @@
 
 
 
+// Clase Divison
 class Division : public Operacion {
 public:
+    // Divide los parametros secuencialmente
     double ejecutar(const Parametros& params) override;
 };
 

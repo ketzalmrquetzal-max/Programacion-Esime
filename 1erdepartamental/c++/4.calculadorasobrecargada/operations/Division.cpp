@@ -6,6 +6,7 @@
 #include "../utils/Parametros.h"
 #include <stdexcept>
 
+// realisa la division con validacion
 double Division::ejecutar(const Parametros& params) {
     if (params.cantidad() < 2) {
         throw std::runtime_error("ingresa 2 ");

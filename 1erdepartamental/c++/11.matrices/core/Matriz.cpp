@@ -3,28 +3,35 @@
 #include <iomanip>
 #include <stdexcept>
 
+// Valida dimensiones
 void Matriz::validarDimensiones(size_t f, size_t c) const {
     if (f == 0 || c == 0) throw std::invalid_argument("Dimensiones deben ser > 0");
 }
 
+// Constructor - inicializa matriz
 Matriz::Matriz(size_t filas, size_t columnas) : __filas(filas), __columnas(columnas) {
     validarDimensiones(filas, columnas);
     __datos.resize(filas, std::vector<double>(columnas, 0));
 }
 
+// Obtiene filas
 size_t Matriz::getFilas() const { return __filas; }
+// Obtiene columnas
 size_t Matriz::getColumnas() const { return __columnas; }
 
+// Establece un valor
 void Matriz::set(size_t i, size_t j, double valor) {
     if (i >= __filas || j >= __columnas) throw std::out_of_range("Índice fuera de rango");
     __datos[i][j] = valor;
 }
 
+// Obtiene un valor
 double Matriz::get(size_t i, size_t j) const {
     if (i >= __filas || j >= __columnas) throw std::out_of_range("Índice fuera de rango");
     return __datos[i][j];
 }
 
+// Llena toda la matriz
 void Matriz::llenar(double valor) {
     for (auto& fila : __datos) {
         for (auto& elem : fila) {
@@ -33,6 +40,7 @@ void Matriz::llenar(double valor) {
     }
 }
 
+// Multiplicacion por escalar
 Matriz Matriz::operator*(double escalar) const {
     Matriz resultado(__filas, __columnas);
     for (size_t i = 0; i < __filas; i++) {
@@ -43,6 +51,7 @@ Matriz Matriz::operator*(double escalar) const {
     return resultado;
 }
 
+// Multiplicacion matricial
 Matriz Matriz::operator*(const Matriz& otra) const {
     if (__columnas != otra.__filas) {
         throw std::invalid_argument("Dimensiones incompatibles");
@@ -60,6 +69,7 @@ Matriz Matriz::operator*(const Matriz& otra) const {
     return resultado;
 }
 
+// Sobrecarga operador <<
 std::ostream& operator<<(std::ostream& os, const Matriz& m) {
     for (size_t i = 0; i < m.__filas; i++) {
         os << "[ ";

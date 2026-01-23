@@ -3,7 +3,7 @@ Programa: Herencia
 Demuestra herencia con ABC y operaciones especializadas
 """
 
-#Se importan las clases hijas desde el paquete core
+#Se importan las clases hijas 
 from core.calculadoras import CalculadoraCientifica, CalculadoraFinanciera
 
 if __name__ == "__main__":

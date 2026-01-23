@@ -3,15 +3,15 @@
 
 #include "../core/Calculadora.h"
 
-/**
- * Clase para mostrar menú interactivo
- */
+// Clase Menu
 class Menu {
 private:
     Calculadora __calc;
 
 public:
+    // Muestra las opciones del menú
     void mostrar();
+    // Ejecuta el bucle principal del menú
     void ejecutar();
 };
 

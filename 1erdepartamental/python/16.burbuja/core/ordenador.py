@@ -1,10 +1,9 @@
 # Ordenador burbuja
 
-
 class OrdenadorBurbuja:
     def __init__(self):
-        self.__comparaciones = 0
-        self.__intercambios = 0
+        self.__comparaciones = 0 #valores por defecto
+        self.__intercambios = 0 #valores por defecto
 
     def ordenar(self, datos):
         self.__comparaciones = 0
@@ -19,11 +18,11 @@ class OrdenadorBurbuja:
                     datos[j], datos[j + 1] = (
                         datos[j + 1],
                         datos[j],
-                    )  # Swap elegante en Python
+                    )  # Swap 
                     self.__intercambios += 1
                     hubo_intercambio = True
             if not hubo_intercambio:  # Si ya está ordenado, termina antes
-                break
+                break #Termina el programa
 
     @property
     def comparaciones(self):

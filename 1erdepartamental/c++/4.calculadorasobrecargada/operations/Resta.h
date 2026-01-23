@@ -5,8 +5,10 @@ ss
 #include "../interfaces/Operacion.h"
 
 
+// Clase Resta
 class Resta : public Operacion {
 public:
+    //Resta todos los parametros
     double ejecutar(const Parametros& params) override;
 };
 

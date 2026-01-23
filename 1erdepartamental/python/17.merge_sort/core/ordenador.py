@@ -1,14 +1,18 @@
 # Ordenador merge sort
-
+#Clase ordenadorMarge
 class OrdenadorMerge:
+    #Constructor
+    #Inicializa el contador de fusiones
     def __init__(self):
         self.__fusiones = 0
-    
+    #Función principal de ordamiento 
     def ordenar(self, datos):
         self.__fusiones = 0
+        #Va a verificar que los datos que el arreglo tenga más de un elemento
         if len(datos) > 1:
+            #Función principal de ordenamiento
             self._merge_sort(datos, 0, len(datos) - 1)
-    
+    #Función pricipal de ordenamiento
     def _merge_sort(self, arr, izq, der):
         if izq >= der:
             return
@@ -17,9 +21,7 @@ class OrdenadorMerge:
         self._merge_sort(arr, medio + 1, der)
         self._fusionar(arr, izq, medio, der)
     
-    def _fus
-
-ionar(self, arr, izq, medio, der):
+    def _fusionar(self, arr, izq, medio, der):
         izq_arr = arr[izq:medio + 1]
         der_arr = arr[medio + 1:der + 1]
         

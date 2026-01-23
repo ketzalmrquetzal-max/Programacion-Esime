@@ -2,9 +2,9 @@
 Programa: Tipo Dato Puntero
 Demuestra puntero tipado con objetos personalizados
 """
-
+#Importa clases 
 from core.estadisticas import EstadisticasEstudiantes, Estudiante
-
+#Punto de entrada 
 if __name__ == "__main__":
     stats = EstadisticasEstudiantes()
 

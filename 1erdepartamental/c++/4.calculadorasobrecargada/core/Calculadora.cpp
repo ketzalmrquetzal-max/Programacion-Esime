@@ -5,6 +5,7 @@
 #include "Calculadora.h"
 
 
+// Ejecuta la operacion y retorna el resultado
 double Calculadora::calcular(Operacion& op, const Parametros &params) {
     return op.ejecutar(params);
 }

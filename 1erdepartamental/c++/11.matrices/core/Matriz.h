@@ -11,15 +11,24 @@ private:
     void validarDimensiones(size_t f, size_t c) const;
 
 public:
+    // Constructor - crea matriz con dimensiones
     Matriz(size_t filas, size_t columnas);
+    // Obtiene numero de filas
     size_t getFilas() const;
+    // Obtiene numero de columnas
     size_t getColumnas() const;
+    // Establece valor en posicion
     void set(size_t i, size_t j, double valor);
+    // Obtiene valor en posicion
     double get(size_t i, size_t j) const;
+    // Llena la matriz con un valor
     void llenar(double valor);
     
-    Matriz operator*(double escalar) const;  // Multiplicación por escalar
-    Matriz operator*(const Matriz& otra) const;  // Multiplicación matricial
+    // Multiplicacion por escalar
+    Matriz operator*(double escalar) const;
+    // Multiplicacion matricial
+    Matriz operator*(const Matriz& otra) const;
+    // Sobrecarga operador <<
     friend std::ostream& operator<<(std::ostream& os, const Matriz& m);
 };
 

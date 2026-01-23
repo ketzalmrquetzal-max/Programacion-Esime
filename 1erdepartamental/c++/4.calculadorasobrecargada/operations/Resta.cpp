@@ -4,6 +4,7 @@
 #include "Resta.h"
 #include "../utils/Parametros.h"
 
+// Realiza la resta de todos los balores
 double Resta::ejecutar(const Parametros& params) {
     double resultado = 0.0;
 

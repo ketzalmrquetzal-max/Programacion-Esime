@@ -3,9 +3,11 @@
 #include "core/Auto.h"
 
 int main() {
+    // Crea una persona
     Persona p("Hugo", "Dominguez", "Lopez", 'M', 19);
     std::cout << p << std::endl << std::endl;
     
+    // Crea un auto
     Auto a("Honda", "Civic", 350000, 2022);
     std::cout << a << std::endl;
     

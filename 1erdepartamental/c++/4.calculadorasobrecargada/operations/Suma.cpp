@@ -3,6 +3,7 @@
 //
 #include "Suma.h"
 
+// Realiza lasuma de todos los valores
 double Suma::ejecutar(const Parametros& params) {
     double resultado = 0.0;
 

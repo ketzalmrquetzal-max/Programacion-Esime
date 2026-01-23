@@ -7,9 +7,12 @@
 
 #include "../utils/Parametros.h"
 
+// Interfaz Operacion
 class Operacion {
 public:
+    // Ejecuta la operacion con los parametros dados
     virtual double ejecutar(const Parametros& params) = 0 ;
+    // Destructor  virtual
     virtual ~Operacion() = default;
 };
 

@@ -1,12 +1,12 @@
 #ifndef CALCULADORA_ICALCULADORA_H
 #define CALCULADORA_ICALCULADORA_H
 
-/**
- * Interfaz para calculadoras básicas
- */
+// Interfaz ICalculadora
 class ICalculadora {
 public:
+    // Obt iene el último resultado calculado
     virtual double getResultado() const = 0;
+    // Destructor virtual por defecto
     virtual ~ICalculadora() = default;
 };
 

@@ -10,13 +10,17 @@
 //CONST -> SOLO LEER DATOS
 
 
+// Clase Parametros
 class Parametros {
 private:
     std::vector<double> valores;
 
 public:
+    // Agrega un valor al arreglo
     void agregar(double valor);
+    // Obtiene un balor por indice
     double obtener(int indice) const;
+    // Retorna la cantida d de valores
     int cantidad() const;
 };
 

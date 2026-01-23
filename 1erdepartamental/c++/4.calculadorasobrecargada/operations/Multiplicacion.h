@@ -6,8 +6,10 @@
 #define EJ4ESIME_MULTIPLICACION_H
 #include "../interfaces/Operacion.h"
 
+// clase Multiplicacion
 class Multiplicacion : public Operacion {
 public:
+    // Multiplica todos los parametros
     double ejecutar(const Parametros& params) override;
 };
 

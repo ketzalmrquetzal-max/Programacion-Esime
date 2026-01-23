@@ -8,8 +8,10 @@
 
 #include "../interfaces/Operacion.h"
 
+// clase Calculadora
 class Calculadora {
 public:
+    // Calcula usando una operacio n
     double calcular(Operacion& op, const Parametros& params);
 };
 
