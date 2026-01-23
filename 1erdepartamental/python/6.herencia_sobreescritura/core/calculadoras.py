@@ -25,7 +25,7 @@ class CalculadoraBase(ABC):
 
 
 class CalculadoraDirecta(CalculadoraBase):
-    # Usa operadores nativos
+    # Sobreescribe métodos usando operadores nativos (*, **, /)
     def multiplicar(self, a, b):
         self._CalculadoraBase__resultado = a * b
         return self._CalculadoraBase__resultado
@@ -42,7 +42,7 @@ class CalculadoraDirecta(CalculadoraBase):
 
 
 class CalculadoraSucesiva(CalculadoraBase):
-    # Usa algoritmos iterativos
+    # Sobreescribe métodos usando loops (enfoque educativo)
     def multiplicar(self, a, b):
         resultado = 0
         for _ in range(int(b)):

@@ -10,7 +10,7 @@ class Calculadora:
         return self.__resultado
 
     def sumar(self, *numeros):
-        # Simula sobrecarga aceptando cantidad variable de argumentos
+        # *args simula sobrecarga: permite sumar(1,2) o sumar(1,2,3,4)
         self.__resultado = sum(numeros)
         return self.__resultado
 

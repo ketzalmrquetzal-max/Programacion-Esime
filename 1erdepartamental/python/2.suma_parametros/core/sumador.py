@@ -26,7 +26,7 @@ class Sumador:
         return self.__a + self.__b
 
     def __add__(self, otro):
-        # Permite s1 + s2
+        # Sobrecarga del operador + para permitir s1 + s2
         return Sumador(self.__a + otro.__a, self.__b + otro.__b)
 
     def __str__(self):

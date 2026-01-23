@@ -19,7 +19,7 @@ class OrdenadorBurbuja:
                     datos[j], datos[j + 1] = datos[j + 1], datos[j]
                     self.__intercambios += 1
                     hubo_intercambio = True
-            if not hubo_intercambio:
+            if not hubo_intercambio:  # Optimización: termina si ya está ordenado
                 break
 
     @property

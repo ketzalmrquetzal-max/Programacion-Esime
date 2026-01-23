@@ -1,0 +1,153 @@
+cmake_minimum_required(VERSION 4.1)
+project(c__)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(1.hola_mundo/core)
+include_directories(1.hola_mundo/interfaces)
+include_directories(10.promedio_puntero/core)
+include_directories(10.promedio_puntero/utils)
+include_directories(11.matrices/core)
+include_directories(12.tipo_dato_arreglo/core)
+include_directories(13.tipo_dato_puntero/core)
+include_directories(13.tipo_dato_puntero/utils)
+include_directories(14.recursividad/core)
+include_directories(15.recursividad_fractales/core)
+include_directories(16.burbuja/interfaces)
+include_directories(16.burbuja/operations)
+include_directories(17.merge_sort/interfaces)
+include_directories(17.merge_sort/operations)
+include_directories(18.quick_sort/interfaces)
+include_directories(18.quick_sort/operations)
+include_directories(19.burbuja_indirecto/interfaces)
+include_directories(19.burbuja_indirecto/operations)
+include_directories(2.suma_parametros/core)
+include_directories(2.suma_parametros/interfaces)
+include_directories(20.merge_indirecto/interfaces)
+include_directories(20.merge_indirecto/operations)
+include_directories(21.quick_indirecto/interfaces)
+include_directories(21.quick_indirecto/operations)
+include_directories(3.calculadora/core)
+include_directories(3.calculadora/interfaces)
+include_directories(3.calculadora/utils)
+include_directories(4.calculadorasobrecargada/core)
+include_directories(4.calculadorasobrecargada/interfaces)
+include_directories(4.calculadorasobrecargada/operations)
+include_directories(4.calculadorasobrecargada/utils)
+include_directories(5.herencia/core)
+include_directories(5.herencia/interfaces)
+include_directories(5.herencia/operations)
+include_directories(6.herencia_sobreescritura/core)
+include_directories(6.herencia_sobreescritura/interfaces)
+include_directories(6.herencia_sobreescritura/operations)
+include_directories(7.1.identificar_tamanios/core)
+include_directories(7.creacion_dato/core)
+include_directories(8.promedio/core)
+include_directories(9.promedio_arreglo/core)
+
+add_executable(c__
+        1.hola_mundo/core/Saludo.cpp
+        1.hola_mundo/core/Saludo.h
+        1.hola_mundo/interfaces/ISaludador.h
+        1.hola_mundo/main.cpp
+        10.promedio_puntero/core/EstadisticasPuntero.cpp
+        10.promedio_puntero/core/EstadisticasPuntero.h
+        10.promedio_puntero/utils/Puntero.cpp
+        10.promedio_puntero/utils/Puntero.h
+        10.promedio_puntero/main.cpp
+        11.matrices/core/Matriz.cpp
+        11.matrices/core/Matriz.h
+        11.matrices/main.cpp
+        12.tipo_dato_arreglo/core/ColeccionProductos.cpp
+        12.tipo_dato_arreglo/core/ColeccionProductos.h
+        12.tipo_dato_arreglo/core/Producto.cpp
+        12.tipo_dato_arreglo/core/Producto.h
+        12.tipo_dato_arreglo/main.cpp
+        13.tipo_dato_puntero/core/EstadisticasEstudiantes.cpp
+        13.tipo_dato_puntero/core/EstadisticasEstudiantes.h
+        13.tipo_dato_puntero/core/Estudiante.cpp
+        13.tipo_dato_puntero/core/Estudiante.h
+        13.tipo_dato_puntero/utils/PunteroTipado.h
+        13.tipo_dato_puntero/main.cpp
+        14.recursividad/core/AlgoritmosRecursivos.cpp
+        14.recursividad/core/AlgoritmosRecursivos.h
+        14.recursividad/main.cpp
+        15.recursividad_fractales/core/FractalesRecursivos.cpp
+        15.recursividad_fractales/core/FractalesRecursivos.h
+        15.recursividad_fractales/main.cpp
+        16.burbuja/interfaces/IOrdenador.h
+        16.burbuja/operations/OrdenadorBurbuja.h
+        16.burbuja/main.cpp
+        17.merge_sort/interfaces/IOrdenador.h
+        17.merge_sort/operations/OrdenadorMerge.h
+        17.merge_sort/main.cpp
+        18.quick_sort/interfaces/IOrdenador.h
+        18.quick_sort/operations/OrdenadorQuick.h
+        18.quick_sort/main.cpp
+        19.burbuja_indirecto/interfaces/IOrdenadorIndirecto.h
+        19.burbuja_indirecto/operations/OrdenadorIndirectoBurbuja.h
+        19.burbuja_indirecto/main.cpp
+        2.suma_parametros/core/Sumador.cpp
+        2.suma_parametros/core/Sumador.h
+        2.suma_parametros/interfaces/IOperadorMatematico.h
+        2.suma_parametros/main.cpp
+        20.merge_indirecto/interfaces/IOrdenadorIndirecto.h
+        20.merge_indirecto/operations/OrdenadorIndirectoMerge.h
+        20.merge_indirecto/main.cpp
+        21.quick_indirecto/interfaces/IOrdenadorIndirecto.h
+        21.quick_indirecto/operations/OrdenadorIndirectoQuick.h
+        21.quick_indirecto/main.cpp
+        3.calculadora/core/Calculadora.cpp
+        3.calculadora/core/Calculadora.h
+        3.calculadora/interfaces/ICalculadora.h
+        3.calculadora/utils/Menu.cpp
+        3.calculadora/utils/Menu.h
+        3.calculadora/main.cpp
+        4.calculadorasobrecargada/core/Calculadora.cpp
+        4.calculadorasobrecargada/core/Calculadora.h
+        4.calculadorasobrecargada/interfaces/Operacion.h
+        4.calculadorasobrecargada/operations/Division.cpp
+        4.calculadorasobrecargada/operations/Division.h
+        4.calculadorasobrecargada/operations/Multiplicacion.cpp
+        4.calculadorasobrecargada/operations/Multiplicacion.h
+        4.calculadorasobrecargada/operations/Resta.cpp
+        4.calculadorasobrecargada/operations/Resta.h
+        4.calculadorasobrecargada/operations/Suma.cpp
+        4.calculadorasobrecargada/operations/Suma.h
+        4.calculadorasobrecargada/utils/Parametros.cpp
+        4.calculadorasobrecargada/utils/Parametros.h
+        4.calculadorasobrecargada/main.cpp
+        5.herencia/core/CalculadoraBase.cpp
+        5.herencia/core/CalculadoraBase.h
+        5.herencia/interfaces/ICalculadora.h
+        5.herencia/operations/CalculadoraCientifica.cpp
+        5.herencia/operations/CalculadoraCientifica.h
+        5.herencia/operations/CalculadoraFinanciera.cpp
+        5.herencia/operations/CalculadoraFinanciera.h
+        5.herencia/main.cpp
+        6.herencia_sobreescritura/core/CalculadoraBase.cpp
+        6.herencia_sobreescritura/core/CalculadoraBase.h
+        6.herencia_sobreescritura/interfaces/ICalculadora.h
+        6.herencia_sobreescritura/operations/CalculadoraDirecta.cpp
+        6.herencia_sobreescritura/operations/CalculadoraDirecta.h
+        6.herencia_sobreescritura/operations/CalculadoraSucesiva.cpp
+        6.herencia_sobreescritura/operations/CalculadoraSucesiva.h
+        6.herencia_sobreescritura/main.cpp
+        7.1.identificar_tamanios/core/AnalizadorTamanios.cpp
+        7.1.identificar_tamanios/core/AnalizadorTamanios.h
+        7.1.identificar_tamanios/core/Persona.cpp
+        7.1.identificar_tamanios/core/Persona.h
+        7.1.identificar_tamanios/main.cpp
+        7.creacion_dato/core/Auto.cpp
+        7.creacion_dato/core/Auto.h
+        7.creacion_dato/core/Persona.cpp
+        7.creacion_dato/core/Persona.h
+        7.creacion_dato/main.cpp
+        8.promedio/core/Estadisticas.cpp
+        8.promedio/core/Estadisticas.h
+        8.promedio/main.cpp
+        9.promedio_arreglo/core/EstadisticasArreglo.cpp
+        9.promedio_arreglo/core/EstadisticasArreglo.h
+        9.promedio_arreglo/main.cpp
+        1.hola_mundo/core/Saludo.cpp
+        1.hola_mundo/core/Saludo.cpp)
