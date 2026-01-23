@@ -1,5 +1,4 @@
-# Calculadoras con sobreescritura de métodos
-
+#Libreria para cear clases abstractas
 from abc import ABC, abstractmethod
 
 
@@ -10,20 +9,21 @@ class CalculadoraBase(ABC):
     @property
     def resultado(self):
         return self.__resultado
-
+    #Obliga a las clases hijas tener el metodo multiplicar
     @abstractmethod
+    #idea
     def multiplicar(self, a, b):
         pass
-
+    #Obliga a las clases hijas tener el metodo potencia
     @abstractmethod
     def potencia(self, base, exp):
         pass
-
+    #Obliga a las clases hijas tener el metodo dividir
     @abstractmethod
     def dividir(self, a, b):
         pass
 
-
+#Clase Hija 1
 class CalculadoraDirecta(CalculadoraBase):
     # Implementación directa - usa operadores nativos de Python
     def multiplicar(self, a, b):
@@ -38,12 +38,12 @@ class CalculadoraDirecta(CalculadoraBase):
 
     def dividir(self, a, b):
         if b == 0:
-            raise ValueError("División por cero")
+            raise ValueError("División por cero")#Evitamos que el programa se rompa
         self._CalculadoraBase__resultado = a / b
         return self._CalculadoraBase__resultado
 
-
-class CalculadoraSucesiva(CalculadoraBase):
+#Clase Hija 2
+class CalculadoraSucesiva(CalculadoraBase):#Hereda de CalculadoraBase
     # Implementación algorítmica - usa loops en lugar de operadores
     def multiplicar(self, a, b):
         resultado = 0
@@ -54,7 +54,7 @@ class CalculadoraSucesiva(CalculadoraBase):
 
     def potencia(self, base, exp):
         resultado = 1
-        for _ in range(int(exp)):
+        for _ in range(int(exp)):#repetimos el ciclo la misma cantidad que exp
             resultado *= base
         self._CalculadoraBase__resultado = resultado
         return self._CalculadoraBase__resultado

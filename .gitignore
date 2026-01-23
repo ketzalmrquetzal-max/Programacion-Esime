@@ -1,6 +1,5 @@
 # Carpetas a ignorar
-2dodepartamental/
-3erdepartamental/
-web/
-enseñanza/
-entrega/
+__pychache__/
+.vscode/
+.idea/
+

@@ -1,5 +1,5 @@
 # Estadísticas usando simulador de puntero
-
+#ClasePuntero
 from utils.puntero import Puntero
 
 
@@ -8,7 +8,7 @@ class EstadisticasPuntero:
         self.__numeros = list(numeros)
 
     def suma(self):
-        p = Puntero(self.__numeros)
+        p = Puntero(self.__numeros) #Se crea un objeto cuyos atributos son la la lista de numeros de mi objeto 
         total = 0
         while p.en_rango():
             total += p.get_at()
@@ -19,7 +19,7 @@ class EstadisticasPuntero:
         return self.suma() / len(self.__numeros)
 
     def maximo(self):
-        p = Puntero(self.__numeros)
+        p = Puntero(self.__numeros)#Se crea un objeto cuyos atributos son la la lista de numeros de mi objeto 
         maximo = p.get_at()
         while p.en_rango():
             if p.get_at() > maximo:
@@ -28,7 +28,7 @@ class EstadisticasPuntero:
         return maximo
 
     def minimo(self):
-        p = Puntero(self.__numeros)
+        p = Puntero(self.__numeros)#Se crea un objeto cuyos atributos son la la lista de numeros de mi objeto 
         minimo = p.get_at()
         while p.en_rango():
             if p.get_at() < minimo:

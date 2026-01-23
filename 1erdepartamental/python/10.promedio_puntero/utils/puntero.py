@@ -1,10 +1,10 @@
 # Simulador de puntero para Python
 
-
+#Clase Puntero 
 class Puntero:
     def __init__(self, datos):
         self.__datos = datos
-        self.__indice = 0
+        self.__indice = 0 #Atributo por defecto
 
     def get_at(self):
         if self.__indice >= len(self.__datos):

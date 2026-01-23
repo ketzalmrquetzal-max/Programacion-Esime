@@ -1,1 +1,2 @@
-# Package init
+# Permite importar desde core/
+

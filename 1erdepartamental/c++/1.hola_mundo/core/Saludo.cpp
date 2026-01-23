@@ -1,7 +1,6 @@
 #include "Saludo.h"
 #include <iostream>
 #include <stdexcept>
-
 void Saludo::validarMensaje(const std::string& msg) const {
     if (msg.empty()) {
         throw std::invalid_argument("El mensaje no puede estar vacío");

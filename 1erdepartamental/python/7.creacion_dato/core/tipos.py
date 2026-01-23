@@ -1,7 +1,9 @@
 # Tipos de datos personalizados
 
-
+#Clase Persona
 class Persona:
+    #Constructor 
+    #Inicia 
     def __init__(self, nombre, apellido, edad):
         self.__nombre = nombre
         self.__apellido = apellido
