@@ -1,79 +1,121 @@
+// ============================================
+// PROGRAMA: Herencia con Sobreescritura
+// DESCRIPCIÓN: Implementaciones directa vs algorítmica
+// ============================================
+
 #include <iostream>
-#include <cmath>
+#include <stdexcept>
 using namespace std;
 
+
+/**
+ * Base abstracta que obliga a implementar operaciones
+ */
 class CalculadoraBase {
 protected:
-    double resultado;
+    double __resultado;
+
 public:
-    CalculadoraBase() : resultado(0) {}
-    virtual double multiplicar(double a, double b) = 0;
-    virtual double potencia(double base, int exp) = 0;
-    virtual double dividir(double a, double b) = 0;
+    CalculadoraBase() : __resultado(0) {}
+    virtual ~CalculadoraBase() {}
+    
+    double getResultado() const { return __resultado; }
+    
+    // Métodos abstractos que DEBEN ser sobreescritos
+    virtual double multiplicar(double a, int veces) = 0;
+    virtual double potencia(double base, int exponente) = 0;
+    virtual double dividir(double a, int divisor) = 0;
 };
 
+
+/**
+ * Implementación directa usando operadores nativos
+ */
 class CalculadoraDirecta : public CalculadoraBase {
 public:
-    double multiplicar(double a, double b) override {
-        resultado = a * b;
-        return resultado;
+    double multiplicar(double a, int veces) override {
+        __resultado = a * veces;
+        return __resultado;
     }
     
-    double potencia(double base, int exp) override {
-        resultado = pow(base, exp);
-        return resultado;
+    double potencia(double base, int exponente) override {
+        if (exponente < 0) {
+            throw invalid_argument("Exponente debe ser >= 0");
+        }
+        __resultado = 1;
+        for (int i = 0; i < exponente; i++) {
+            __resultado *= base;
+        }
+        return __resultado;
     }
     
-    double dividir(double a, double b) override {
-        if (b != 0) { resultado = a / b; return resultado; }
-        return 0;
+    double dividir(double a, int divisor) override {
+        if (divisor == 0) {
+            throw invalid_argument("División por cero");
+        }
+        __resultado = a / divisor;
+        return __resultado;
     }
 };
 
+
+/**
+ * Implementación algorítmica usando sumas/restas sucesivas
+ */
 class CalculadoraSucesiva : public CalculadoraBase {
 public:
-    double multiplicar(double a, double b) override {
-        resultado = 0;
-        int absB = abs((int)b);
-        for (int i = 0; i < absB; i++) {
-            resultado += abs(a);
+    // Multiplicación como sumas repetidas
+    double multiplicar(double a, int veces) override {
+        __resultado = 0;
+        for (int i = 0; i < veces; i++) {
+            __resultado += a;
         }
-        if ((a < 0) != (b < 0)) resultado = -resultado;
-        return resultado;
+        return __resultado;
     }
     
-    double potencia(double base, int exp) override {
-        resultado = 1;
-        for (int i = 0; i < abs(exp); i++) {
-            double temp = 0;
-            for (int j = 0; j < abs((int)base); j++) {
-                temp += abs(resultado);
-            }
-            resultado = temp;
+    // Potencia como multiplicaciones repetidas
+    double potencia(double base, int exponente) override {
+        if (exponente < 0) {
+            throw invalid_argument("Exponente debe ser >= 0");
         }
-        return resultado;
+        __resultado = 1;
+        for (int i = 0; i < exponente; i++) {
+            __resultado *= base;
+        }
+        return __resultado;
     }
     
-    double dividir(double a, double b) override {
-        if (b == 0) return 0;
-        int cociente = 0;
-        double residuo = abs(a);
-        while (residuo >= abs(b)) {
-            residuo -= abs(b);
-            cociente++;
+    // División como restas sucesivas
+    double dividir(double a, int divisor) override {
+        if (divisor == 0) {
+            throw invalid_argument("División por cero");
         }
-        resultado = ((a >= 0) == (b >= 0)) ? cociente : -cociente;
-        return resultado;
+        __resultado = 0;
+        double residuo = a;
+        while (residuo >= divisor) {
+            residuo -= divisor;
+            __resultado++;
+        }
+        return __resultado;
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
+    cout << "=== CALCULADORA DIRECTA ===" << endl;
     CalculadoraDirecta cd;
-    cout << "Directa: 4*5 = " << cd.multiplicar(4, 5) << endl;
-    cout << "Directa: 2^4 = " << cd.potencia(2, 4) << endl;
+    cout << "5 * 3 = " << cd.multiplicar(5, 3) << endl;
+    cout << "2^8 = " << cd.potencia(2, 8) << endl;
+    cout << "20 / 4 = " << cd.dividir(20, 4) << endl << endl;
     
+    cout << "=== CALCULADORA SUCESIVA ===" << endl;
     CalculadoraSucesiva cs;
-    cout << "Sucesiva: 4*5 = " << cs.multiplicar(4, 5) << endl;
-    cout << "Sucesiva: 17/5 = " << cs.dividir(17, 5) << endl;
+    cout << "5 * 3 = " << cs.multiplicar(5, 3) << endl;
+    cout << "2^8 = " << cs.potencia(2, 8) << endl;
+    cout << "20 / 4 = " << cs.dividir(20, 4) << endl;
+    
     return 0;
 }

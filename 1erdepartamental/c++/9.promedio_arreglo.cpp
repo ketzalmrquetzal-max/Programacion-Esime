@@ -1,52 +1,80 @@
+// ============================================
+// PROGRAMA: Estadísticas con Vector Dinámico
+// DESCRIPCIÓN: Acepta cualquier cantidad de números
+// ============================================
+
 #include <iostream>
+#include <vector>
 using namespace std;
 
+
+/**
+ * Estadísticas sobre vector de tamaño variable
+ * 
+ * Más flexible que array fijo
+ */
 class EstadisticasArreglo {
 private:
-    double* datos;
-    int tam;
+    vector<double> __datos;
+
 public:
-    EstadisticasArreglo(double arr[], int t) : tam(t) {
-        datos = new double[t];
-        for (int i = 0; i < t; i++) datos[i] = arr[i];
+    EstadisticasArreglo(const vector<double>& arreglo)
+        : __datos(arreglo) {}
+    
+    // Getter que retorna copia
+    vector<double> getDatos() const {
+        return __datos;
     }
     
-    ~EstadisticasArreglo() { delete[] datos; }
-    
-    double suma() {
+    double suma() const {
         double total = 0;
-        for (int i = 0; i < tam; i++) total += datos[i];
+        for (double n : __datos) {
+            total += n;
+        }
         return total;
     }
     
-    double promedio() { return suma() / tam; }
+    double promedio() const {
+        return suma() / __datos.size();
+    }
     
-    double maximo() {
-        double m = datos[0];
-        for (int i = 1; i < tam; i++) if (datos[i] > m) m = datos[i];
+    double maximo() const {
+        double m = __datos[0];
+        for (double n : __datos) {
+            if (n > m) m = n;
+        }
         return m;
     }
     
-    double minimo() {
-        double m = datos[0];
-        for (int i = 1; i < tam; i++) if (datos[i] < m) m = datos[i];
+    double minimo() const {
+        double m = __datos[0];
+        for (double n : __datos) {
+            if (n < m) m = n;
+        }
         return m;
     }
     
-    void mostrar() {
-        cout << "Datos: ";
-        for (int i = 0; i < tam; i++) cout << datos[i] << " ";
-        cout << endl;
+    void agregar(double valor) {
+        __datos.push_back(valor);
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
-    double arr[] = {10, 25, 5, 30, 15};
-    EstadisticasArreglo e(arr, 5);
-    e.mostrar();
+    EstadisticasArreglo e({10, 25, 5, 30, 15});
+    
+    cout << "Datos iniciales: " << e.getDatos().size() << " elementos" << endl;
     cout << "Suma: " << e.suma() << endl;
     cout << "Promedio: " << e.promedio() << endl;
-    cout << "Maximo: " << e.maximo() << endl;
-    cout << "Minimo: " << e.minimo() << endl;
+    cout << "Máximo: " << e.maximo() << endl;
+    cout << "Mínimo: " << e.minimo() << endl << endl;
+    
+    e.agregar(50);
+    cout << "Después de agregar 50:" << endl;
+    cout << "Promedio: " << e.promedio() << endl;
+    
     return 0;
 }

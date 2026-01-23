@@ -1,55 +1,85 @@
+// ============================================
+// PROGRAMA: Ordenamiento Indirecto con Burbuja
+// DESCRIPCIÓN: Ordena índices, preserva array original
+// ============================================
+
 #include <iostream>
-#include <string>
+#include <vector>
 using namespace std;
 
-class Persona {
-public:
-    string nombre;
-    int edad;
-    Persona(string n = "", int e = 0) : nombre(n), edad(e) {}
-};
 
-class OrdenadorBurbujaIndirecto {
+/**
+ * Ordenamiento indirecto: ordena un vector de índices
+ * en lugar de modificar el array original
+ */
+template<typename T>
+class OrdenadorIndirectoBurbuja {
 private:
-    int* datos;
-    int* indices;
-    int tam;
+    const vector<T>* __datosOriginales;
+    vector<int> __indices;
+    int __intercambios;
+
 public:
-    OrdenadorBurbujaIndirecto(int arr[], int t) : tam(t) {
-        datos = new int[t];
-        indices = new int[t];
-        for (int i = 0; i < t; i++) {
-            datos[i] = arr[i];
-            indices[i] = i;
+    OrdenadorIndirectoBurbuja(const vector<T>& datos)
+        : __datosOriginales(&datos), __intercambios(0) {
+        // Inicializa índices [0, 1, 2, ..., n-1]
+        for (size_t i = 0; i < datos.size(); i++) {
+            __indices.push_back(i);
         }
     }
-    ~OrdenadorBurbujaIndirecto() { delete[] datos; delete[] indices; }
     
+    /**
+     * Ordena los índices según los valores originales
+     * El array original NO se modifica
+     */
     void ordenar() {
-        for (int i = 0; i < tam - 1; i++)
-            for (int j = 0; j < tam - 1 - i; j++)
-                if (datos[indices[j]] > datos[indices[j + 1]])
-                    swap(indices[j], indices[j + 1]);
+        __intercambios = 0;
+        size_t n = __indices.size();
+        
+        for (size_t i = 0; i < n - 1; i++) {
+            for (size_t j = 0; j < n - i - 1; j++) {
+                // Compara valores originales usando índices
+                if ((*__datosOriginales)[__indices[j]] > 
+                    (*__datosOriginales)[__indices[j + 1]]) {
+                    swap(__indices[j], __indices[j + 1]);
+                    __intercambios++;
+                }
+            }
+        }
     }
     
-    void mostrarOriginal() {
-        cout << "Original: ";
-        for (int i = 0; i < tam; i++) cout << datos[i] << " ";
+    vector<int> getIndices() const { return __indices; }
+    
+    void mostrarOrdenado() const {
+        cout << "Orden mediante índices: ";
+        for (int idx : __indices) {
+            cout << (*__datosOriginales)[idx] << " ";
+        }
         cout << endl;
     }
     
-    void mostrarOrdenado() {
-        cout << "Ordenado: ";
-        for (int i = 0; i < tam; i++) cout << datos[indices[i]] << " ";
+    void mostrarOriginal() const {
+        cout << "Array original (sin modificar): ";
+        for (const T& val : *__datosOriginales) {
+            cout << val << " ";
+        }
         cout << endl;
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    OrdenadorBurbujaIndirecto o(arr, 7);
-    o.ordenar();
-    o.mostrarOriginal();
-    o.mostrarOrdenado();
+    vector<int> numeros = {64, 34, 25, 12, 22, 11, 90};
+    
+    OrdenadorIndirectoBurbuja<int> ordenador(numeros);
+    
+    ordenador.mostrarOriginal();
+    ordenador.ordenar();
+    ordenador.mostrarOrdenado();
+    ordenador.mostrarOriginal();  // Demuestra que no cambió
+    
     return 0;
 }

@@ -1,72 +1,99 @@
+// ============================================
+// PROGRAMA: Ordenamiento Burbuja (Bubble Sort)
+// DESCRIPCIÓN: Algoritmo O(n²) con optimización
+// ============================================
+
 #include <iostream>
-#include <string>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-class Persona {
+
+/**
+ * Interfaz para algoritmos de ordenamiento
+ */
+template<typename T>
+class IOrdenador {
 public:
-    string nombre;
-    int edad;
-    Persona(string n = "", int e = 0) : nombre(n), edad(e) {}
+    virtual void ordenar(vector<T>& datos) = 0;
+    virtual ~IOrdenador() {}
 };
 
-class OrdenadorBurbuja {
+
+/**
+ * Ordenamiento burbuja con encapsulación
+ */
+template<typename T>
+class OrdenadorBurbuja : public IOrdenador<T> {
 private:
-    int* datos;
-    int tam;
+    int __comparaciones;
+    int __intercambios;
+    
+    void intercambiar(T& a, T& b) {
+        T temp = a;
+        a = b;
+        b = temp;
+        __intercambios++;
+    }
+
 public:
-    OrdenadorBurbuja(int arr[], int t) : tam(t) {
-        datos = new int[t];
-        for (int i = 0; i < t; i++) datos[i] = arr[i];
-    }
-    ~OrdenadorBurbuja() { delete[] datos; }
+    OrdenadorBurbuja() : __comparaciones(0), __intercambios(0) {}
     
-    void ordenar() {
-        for (int i = 0; i < tam - 1; i++)
-            for (int j = 0; j < tam - 1 - i; j++)
-                if (datos[j] > datos[j + 1])
-                    swap(datos[j], datos[j + 1]);
+    int getComparaciones() const { return __comparaciones; }
+    int getIntercambios() const { return __intercambios; }
+    
+    /**
+     * Burbuja: compara pares adyacentes y los intercambia si están desordenados
+     * Optimización: detiene si no hay intercambios en una pasada
+     */
+    void ordenar(vector<T>& datos) override {
+        __comparaciones = 0;
+        __intercambios = 0;
+        
+        size_t n = datos.size();
+        bool huboIntercambio;
+        
+        for (size_t i = 0; i < n - 1; i++) {
+            huboIntercambio = false;
+            
+            for (size_t j = 0; j < n - i - 1; j++) {
+                __comparaciones++;
+                if (datos[j] > datos[j + 1]) {
+                    intercambiar(datos[j], datos[j + 1]);
+                    huboIntercambio = true;
+                }
+            }
+            
+            // Optimización: si no hubo intercambios, ya está ordenado
+            if (!huboIntercambio) break;
+        }
     }
     
-    void mostrar() {
-        for (int i = 0; i < tam; i++) cout << datos[i] << " ";
-        cout << endl;
+    void mostrarEstadisticas() const {
+        cout << "Comparaciones: " << __comparaciones << endl;
+        cout << "Intercambios: " << __intercambios << endl;
     }
 };
 
-class OrdenadorBurbujaPersonas {
-private:
-    Persona* personas;
-    int tam;
-public:
-    OrdenadorBurbujaPersonas(Persona arr[], int t) : tam(t) {
-        personas = new Persona[t];
-        for (int i = 0; i < t; i++) personas[i] = arr[i];
-    }
-    ~OrdenadorBurbujaPersonas() { delete[] personas; }
-    
-    void ordenarPorEdad() {
-        for (int i = 0; i < tam - 1; i++)
-            for (int j = 0; j < tam - 1 - i; j++)
-                if (personas[j].edad > personas[j + 1].edad)
-                    swap(personas[j], personas[j + 1]);
-    }
-    
-    void mostrar() {
-        for (int i = 0; i < tam; i++)
-            cout << personas[i].nombre << "(" << personas[i].edad << ") ";
-        cout << endl;
-    }
-};
 
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    OrdenadorBurbuja o(arr, 7);
-    o.ordenar();
-    cout << "Enteros: "; o.mostrar();
+    vector<int> numeros = {64, 34, 25, 12, 22, 11, 90};
     
-    Persona pers[] = {Persona("Juan", 25), Persona("Ana", 30), Persona("Pedro", 20)};
-    OrdenadorBurbujaPersonas op(pers, 3);
-    op.ordenarPorEdad();
-    cout << "Por edad: "; op.mostrar();
+    cout << "Array original: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl << endl;
+    
+    OrdenadorBurbuja<int> ordenador;
+    ordenador.ordenar(numeros);
+    
+    cout << "Array ordenado: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl << endl;
+    
+    ordenador.mostrarEstadisticas();
+    
     return 0;
 }

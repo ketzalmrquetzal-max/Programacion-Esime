@@ -1,45 +1,72 @@
+// ============================================
+// PROGRAMA: Estadísticas con Parámetros Fijos
+// DESCRIPCIÓN: Calcula suma, promedio, máximo, mínimo
+// ============================================
+
 #include <iostream>
+#include <array>
 using namespace std;
 
+
+/**
+ * Estadísticas sobre 5 números fijos
+ * 
+ * Implementaciones manuales sin usar algorithms
+ */
 class Estadisticas {
 private:
-    double n1, n2, n3, n4, n5;
+    array<double, 5> __numeros;
+
 public:
-    Estadisticas(double a, double b, double c, double d, double e)
-        : n1(a), n2(b), n3(c), n4(d), n5(e) {}
-    
-    double suma() {
-        return n1 + n2 + n3 + n4 + n5;
+    Estadisticas(double n1, double n2, double n3, double n4, double n5) {
+        __numeros = {n1, n2, n3, n4, n5};
     }
     
-    double promedio() {
-        return suma() / 5;
+    // Getter que retorna copia
+    array<double, 5> getNumeros() const {
+        return __numeros;
     }
     
-    double maximo() {
-        double m = n1;
-        if (n2 > m) m = n2;
-        if (n3 > m) m = n3;
-        if (n4 > m) m = n4;
-        if (n5 > m) m = n5;
+    double suma() const {
+        double total = 0;
+        for (double n : __numeros) {
+            total += n;
+        }
+        return total;
+    }
+    
+    double promedio() const {
+        return suma() / __numeros.size();
+    }
+    
+    double maximo() const {
+        double m = __numeros[0];
+        for (double n : __numeros) {
+            if (n > m) m = n;
+        }
         return m;
     }
     
-    double minimo() {
-        double m = n1;
-        if (n2 < m) m = n2;
-        if (n3 < m) m = n3;
-        if (n4 < m) m = n4;
-        if (n5 < m) m = n5;
+    double minimo() const {
+        double m = __numeros[0];
+        for (double n : __numeros) {
+            if (n < m) m = n;
+        }
         return m;
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
     Estadisticas e(10, 25, 5, 30, 15);
+    
     cout << "Suma: " << e.suma() << endl;
     cout << "Promedio: " << e.promedio() << endl;
-    cout << "Maximo: " << e.maximo() << endl;
-    cout << "Minimo: " << e.minimo() << endl;
+    cout << "Máximo: " << e.maximo() << endl;
+    cout << "Mínimo: " << e.minimo() << endl;
+    
     return 0;
 }

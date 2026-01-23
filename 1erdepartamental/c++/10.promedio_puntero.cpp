@@ -1,61 +1,117 @@
+// ============================================
+// PROGRAMA: Estadísticas con Simulación de Punteros
+// DESCRIPCIÓN: Simula aritmética de punteros con iteradores
+// ============================================
+
 #include <iostream>
+#include <vector>
+#include <stdexcept>
 using namespace std;
 
+
+/**
+ * Simula comportamiento de punteros en C++
+ * 
+ * En C++ real usaríamos punteros nativos, pero se encapsula
+ * para demostrar control y validación
+ */
 class Puntero {
 private:
-    double* arr;
-    int pos;
-    int tam;
-public:
-    Puntero(double* a, int t) : arr(a), pos(0), tam(t) {}
+    vector<double>* __datos;
+    size_t __indice;
     
-    double get() { return arr[pos]; }
-    double getAt(int i) { return arr[pos + i]; }
-    void setAt(int i, double val) { arr[pos + i] = val; }
-    void avanzar() { pos++; }
-    void reset() { pos = 0; }
-    int tamanio() { return tam; }
-};
+    void validarIndice() const {
+        if (__indice >= __datos->size()) {
+            throw out_of_range("Índice fuera de rango");
+        }
+    }
 
-class EstadisticasPuntero {
-private:
-    Puntero* p;
 public:
-    EstadisticasPuntero(double* arr, int tam) {
-        p = new Puntero(arr, tam);
+    Puntero(vector<double>* datos) : __datos(datos), __indice(0) {}
+    
+    double getAt() const {
+        validarIndice();
+        return (*__datos)[__indice];
     }
     
-    ~EstadisticasPuntero() { delete p; }
+    void avanzar() {
+        __indice++;
+    }
     
-    double suma() {
+    void reset() {
+        __indice = 0;
+    }
+    
+    bool enRango() const {
+        return __indice < __datos->size();
+    }
+    
+    size_t getIndice() const {
+        return __indice;
+    }
+};
+
+
+/**
+ * Estadísticas usando simulación de punteros
+ */
+class EstadisticasPuntero {
+private:
+    vector<double> __datos;
+
+public:
+    EstadisticasPuntero(const vector<double>& arreglo)
+        : __datos(arreglo) {}
+    
+    double suma() const {
+        Puntero p(const_cast<vector<double>*>(&__datos));
         double total = 0;
-        for (int i = 0; i < p->tamanio(); i++) total += p->getAt(i);
+        
+        while (p.enRango()) {
+            total += p.getAt();
+            p.avanzar();
+        }
         return total;
     }
     
-    double promedio() { return suma() / p->tamanio(); }
+    double promedio() const {
+        return suma() / __datos.size();
+    }
     
-    double maximo() {
-        double m = p->getAt(0);
-        for (int i = 1; i < p->tamanio(); i++)
-            if (p->getAt(i) > m) m = p->getAt(i);
+    double maximo() const {
+        Puntero p(const_cast<vector<double>*>(&__datos));
+        double m = p.getAt();
+        
+        while (p.enRango()) {
+            if (p.getAt() > m) m = p.getAt();
+            p.avanzar();
+        }
         return m;
     }
     
-    double minimo() {
-        double m = p->getAt(0);
-        for (int i = 1; i < p->tamanio(); i++)
-            if (p->getAt(i) < m) m = p->getAt(i);
+    double minimo() const {
+        Puntero p(const_cast<vector<double>*>(&__datos));
+        double m = p.getAt();
+        
+        while (p.enRango()) {
+            if (p.getAt() < m) m = p.getAt();
+            p.avanzar();
+        }
         return m;
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
-    double arr[] = {10, 25, 5, 30, 15};
-    EstadisticasPuntero e(arr, 5);
+    EstadisticasPuntero e({10, 25, 5, 30, 15});
+    
     cout << "Suma: " << e.suma() << endl;
     cout << "Promedio: " << e.promedio() << endl;
-    cout << "Maximo: " << e.maximo() << endl;
-    cout << "Minimo: " << e.minimo() << endl;
+    cout << "Máximo: " << e.maximo() << endl;
+    cout << "Mínimo: " << e.minimo() << endl;
+    
     return 0;
 }

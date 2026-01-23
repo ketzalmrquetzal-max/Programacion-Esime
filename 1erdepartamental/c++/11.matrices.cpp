@@ -1,78 +1,123 @@
+// ============================================
+// PROGRAMA: Operaciones con Matrices
+// DESCRIPCIÓN: Multiplicación escalar y matricial
+// ============================================
+
 #include <iostream>
+#include <vector>
+#include <stdexcept>
+#include <iomanip>
 using namespace std;
 
+
+/**
+ * Matriz con operaciones sobrecargadas
+ * 
+ * Demuestra operator* para escalar y matrices
+ */
 class Matriz {
 private:
-    double** datos;
-    int filas, cols;
+    vector<vector<double>> __datos;
+    size_t __filas;
+    size_t __columnas;
+    
+    void validarDimensiones(size_t filas, size_t columnas) const {
+        if (filas == 0 || columnas == 0) {
+            throw invalid_argument("Dimensiones deben ser > 0");
+        }
+    }
+
 public:
-    Matriz(int f, int c) : filas(f), cols(c) {
-        datos = new double*[f];
-        for (int i = 0; i < f; i++) {
-            datos[i] = new double[c];
-            for (int j = 0; j < c; j++) datos[i][j] = 0;
+    Matriz(size_t filas, size_t columnas) 
+        : __filas(filas), __columnas(columnas) {
+        validarDimensiones(filas, columnas);
+        __datos.resize(filas, vector<double>(columnas, 0));
+    }
+    
+    size_t getFilas() const { return __filas; }
+    size_t getColumnas() const { return __columnas; }
+    
+    void set(size_t i, size_t j, double valor) {
+        if (i >= __filas || j >= __columnas) {
+            throw out_of_range("Índice fuera de rango");
         }
+        __datos[i][j] = valor;
     }
     
-    ~Matriz() {
-        for (int i = 0; i < filas; i++) delete[] datos[i];
-        delete[] datos;
+    double get(size_t i, size_t j) const {
+        if (i >= __filas || j >= __columnas) {
+            throw out_of_range("Índice fuera de rango");
+        }
+        return __datos[i][j];
     }
     
-    void llenar(double vals[], int n) {
-        int idx = 0;
-        for (int i = 0; i < filas && idx < n; i++)
-            for (int j = 0; j < cols && idx < n; j++)
-                datos[i][j] = vals[idx++];
-    }
-    
-    Matriz* multiplicarEscalar(double k) {
-        Matriz* r = new Matriz(filas, cols);
-        for (int i = 0; i < filas; i++)
-            for (int j = 0; j < cols; j++)
-                r->datos[i][j] = datos[i][j] * k;
-        return r;
-    }
-    
-    Matriz* multiplicar(Matriz& b) {
-        Matriz* r = new Matriz(filas, b.cols);
-        for (int i = 0; i < filas; i++)
-            for (int j = 0; j < b.cols; j++) {
-                double s = 0;
-                for (int k = 0; k < cols; k++)
-                    s += datos[i][k] * b.datos[k][j];
-                r->datos[i][j] = s;
+    void llenar(double valor) {
+        for (auto& fila : __datos) {
+            for (auto& elem : fila) {
+                elem = valor;
             }
-        return r;
+        }
     }
     
-    void mostrar() {
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < cols; j++) cout << datos[i][j] << " ";
-            cout << endl;
+    // Multiplicación escalar
+    Matriz operator*(double escalar) const {
+        Matriz resultado(__filas, __columnas);
+        for (size_t i = 0; i < __filas; i++) {
+            for (size_t j = 0; j < __columnas; j++) {
+                resultado.set(i, j, __datos[i][j] * escalar);
+            }
         }
+        return resultado;
+    }
+    
+    // Multiplicación matricial
+    Matriz operator*(const Matriz& otra) const {
+        if (__columnas != otra.__filas) {
+            throw invalid_argument("Dimensiones incompatibles para multiplicación");
+        }
+        
+        Matriz resultado(__filas, otra.__columnas);
+        for (size_t i = 0; i < __filas; i++) {
+            for (size_t j = 0; j < otra.__columnas; j++) {
+                double suma = 0;
+                for (size_t k = 0; k < __columnas; k++) {
+                    suma += __datos[i][k] * otra.__datos[k][j];
+                }
+                resultado.set(i, j, suma);
+            }
+        }
+        return resultado;
+    }
+    
+    friend ostream& operator<<(ostream& os, const Matriz& m) {
+        for (size_t i = 0; i < m.__filas; i++) {
+            os << "[ ";
+            for (size_t j = 0; j < m.__columnas; j++) {
+                os << setw(6) << fixed << setprecision(2) << m.__datos[i][j];
+                if (j < m.__columnas - 1) os << ", ";
+            }
+            os << " ]" << endl;
+        }
+        return os;
     }
 };
 
+
+// ============================================
+// EJECUCIÓN
+// ============================================
 int main() {
-    Matriz A(2, 3);
-    double va[] = {1, 2, 3, 4, 5, 6};
-    A.llenar(va, 6);
-    cout << "A:" << endl; A.mostrar();
+    Matriz m1(2, 2);
+    m1.set(0, 0, 1); m1.set(0, 1, 2);
+    m1.set(1, 0, 3); m1.set(1, 1, 4);
     
-    cout << "A * 2:" << endl;
-    Matriz* A2 = A.multiplicarEscalar(2);
-    A2->mostrar();
+    cout << "Matriz original:" << endl << m1 << endl;
     
-    Matriz B(3, 2);
-    double vb[] = {7, 8, 9, 10, 11, 12};
-    B.llenar(vb, 6);
-    cout << "B:" << endl; B.mostrar();
+    Matriz m2 = m1 * 2;
+    cout << "Multiplicación escalar (x2):" << endl << m2 << endl;
     
-    cout << "A * B:" << endl;
-    Matriz* C = A.multiplicar(B);
-    C->mostrar();
+    Matriz m3 = m1 * m1;
+    cout << "Multiplicación matricial:" << endl << m3 << endl;
     
-    delete A2; delete C;
     return 0;
 }
