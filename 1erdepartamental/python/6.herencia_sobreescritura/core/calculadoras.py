@@ -25,9 +25,11 @@ class CalculadoraBase(ABC):
 
 
 class CalculadoraDirecta(CalculadoraBase):
-    # Sobreescribe métodos usando operadores nativos (*, **, /)
+    # Implementación directa - usa operadores nativos de Python
     def multiplicar(self, a, b):
-        self._CalculadoraBase__resultado = a * b
+        self._CalculadoraBase__resultado = (
+            a * b
+        )  # Name mangling para acceder a __resultado
         return self._CalculadoraBase__resultado
 
     def potencia(self, base, exp):
@@ -42,10 +44,10 @@ class CalculadoraDirecta(CalculadoraBase):
 
 
 class CalculadoraSucesiva(CalculadoraBase):
-    # Sobreescribe métodos usando loops (enfoque educativo)
+    # Implementación algorítmica - usa loops en lugar de operadores
     def multiplicar(self, a, b):
         resultado = 0
-        for _ in range(int(b)):
+        for _ in range(int(b)):  # Multiplica sumando repetidamente
             resultado += a
         self._CalculadoraBase__resultado = resultado
         return self._CalculadoraBase__resultado

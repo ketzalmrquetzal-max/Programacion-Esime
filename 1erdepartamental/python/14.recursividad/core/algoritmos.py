@@ -5,9 +5,9 @@ class AlgoritmosRecursivos:
     def factorial(self, n):
         if n < 0:
             raise ValueError("n debe ser >= 0")
-        if n == 0:  # Caso base - detiene la recursión
+        if n == 0:  # Caso base: detiene la recursión
             return 1
-        return n * self.factorial(n - 1)  # Caso recursivo
+        return n * self.factorial(n - 1)  # Caso recursivo: se llama a sí mismo
 
     def fibonacci(self, n):
         if n < 0:

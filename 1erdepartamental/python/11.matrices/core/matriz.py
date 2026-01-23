@@ -14,8 +14,9 @@ class Matriz:
         return self.__datos[i][j]
 
     def __mul__(self, otro):
-        # Sobrecarga de * - detecta si es escalar o matriz
-        if isinstance(otro, (int, float)):  # Multiplicación escalar
+        # __mul__ permite usar operador * para escalar Y matrices
+        if isinstance(otro, (int, float)):
+            # Multiplicación escalar (matriz * número)
             resultado = Matriz(self.__filas, self.__columnas)
             for i in range(self.__filas):
                 for j in range(self.__columnas):

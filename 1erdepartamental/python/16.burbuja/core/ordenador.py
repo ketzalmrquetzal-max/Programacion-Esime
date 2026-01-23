@@ -12,14 +12,17 @@ class OrdenadorBurbuja:
         n = len(datos)
 
         for i in range(n - 1):
-            hubo_intercambio = False
+            hubo_intercambio = False  # Flag para optimización
             for j in range(n - i - 1):
                 self.__comparaciones += 1
                 if datos[j] > datos[j + 1]:
-                    datos[j], datos[j + 1] = datos[j + 1], datos[j]
+                    datos[j], datos[j + 1] = (
+                        datos[j + 1],
+                        datos[j],
+                    )  # Swap elegante en Python
                     self.__intercambios += 1
                     hubo_intercambio = True
-            if not hubo_intercambio:  # Optimización: termina si ya está ordenado
+            if not hubo_intercambio:  # Si ya está ordenado, termina antes
                 break
 
     @property
