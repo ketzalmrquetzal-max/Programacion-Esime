@@ -2,9 +2,9 @@
 Programa: Burbuja Indirecto
 Demuestra ordenamiento sin modificar el arreglo original
 """
-
+#Importe de la clase 
 from core.ordenador import OrdenadorIndirectoBurbuja
-
+# Punto de inicio
 if __name__ == "__main__":
     numeros = [64, 34, 25, 12, 22, 11, 90]
 

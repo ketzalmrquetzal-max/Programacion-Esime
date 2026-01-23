@@ -7,9 +7,13 @@ private:
     void validarNoNegativo(int n) const;
 
 public:
+    // Calcula factorial
     long long factorial(int n);
+    // Calcula fibonacci
     long long fibonacci(int n);
+    // Suma hasta n
     long long sumaHasta(int n);
+    // Calcula potencia
     double potenciar(double base, int potencia);
 };
 

@@ -2,9 +2,9 @@
 Programa: Quick Indirecto
 Demuestra quick sort sin modificar el arreglo original
 """
-
+# Importa la clase 
 from core.ordenador import OrdenadorIndirectoQuick
-
+#Punto de entrada 
 if __name__ == "__main__":
     numeros = [64, 34, 25, 12, 22, 11, 90]
 

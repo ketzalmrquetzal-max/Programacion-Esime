@@ -2,8 +2,10 @@
 #include "core/AlgoritmosRecursivos.h"
 
 int main() {
+    // Crea algoritmos recursivos
     AlgoritmosRecursivos algo;
     
+    // Ejecuta ejemplos
     std::cout << "Factorial de 5: " << algo.factorial(5) << std::endl;
     std::cout << "Fibonacci de 7: " << algo.fibonacci(7) << std::endl;
     std::cout << "Suma hasta 10: " << algo.sumaHasta(10) << std::endl;

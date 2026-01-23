@@ -10,10 +10,12 @@ void FractalesRecursivos::dibujarTriangulo(int tamano) {
     }
 }
 
+// Dibuja linea
 void FractalesRecursivos::dibujarLinea(int longitud) {
     std::cout << std::string(longitud, '#');
 }
 
+// Fractal Sierpinski
 void FractalesRecursivos::sierpinski(int nivel, int tamano) {
     if (nivel == 0) {
         dibujarTriangulo(tamano);
@@ -24,6 +26,7 @@ void FractalesRecursivos::sierpinski(int nivel, int tamano) {
     std::cout << std::endl;
 }
 
+// Conjunto Cantor
 void FractalesRecursivos::cantor(int nivel, int longitud) {
     if (nivel == 0) {
         dibujarLinea(longitud);
