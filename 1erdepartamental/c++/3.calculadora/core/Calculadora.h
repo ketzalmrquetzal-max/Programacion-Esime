@@ -3,12 +3,10 @@
 
 #include "../interfaces/ICalculadora.h"
 
-/**
- * Calculadora con operaciones básicas y manejo de excepciones
- */
+// Calculadora con operaciones básicas y manejo de excepciones
 class Calculadora : public ICalculadora {
 private:
-    double __resultado;
+    double __resultado;  // Almacena el último resultado calculado
 
 public:
     Calculadora();

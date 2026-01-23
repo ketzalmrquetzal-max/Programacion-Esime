@@ -3,9 +3,10 @@
 
 #include <vector>
 
+// Clase Matriz con sobrecarga de operador * para escalar y multiplicación matricial
 class Matriz {
 private:
-    std::vector<std::vector<double>> __datos;
+    std::vector<std::vector<double>> __datos;  // Vector 2D para almacenar la matriz
     size_t __filas, __columnas;
     void validarDimensiones(size_t f, size_t c) const;
 
@@ -17,8 +18,8 @@ public:
     double get(size_t i, size_t j) const;
     void llenar(double valor);
     
-    Matriz operator*(double escalar) const;
-    Matriz operator*(const Matriz& otra) const;
+    Matriz operator*(double escalar) const;  // Multiplicación por escalar
+    Matriz operator*(const Matriz& otra) const;  // Multiplicación matricial
     friend std::ostream& operator<<(std::ostream& os, const Matriz& m);
 };
 

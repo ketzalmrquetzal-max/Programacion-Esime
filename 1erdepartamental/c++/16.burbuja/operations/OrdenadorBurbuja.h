@@ -3,10 +3,11 @@
 
 #include "../interfaces/IOrdenador.h"
 
+// Bubble sort con templates y estadísticas de rendimiento
 template<typename T>
 class OrdenadorBurbuja : public IOrdenador<T> {
 private:
-    int __comparaciones, __intercambios;
+    int __comparaciones, __intercambios;  // Contadores para análisis
     void intercambiar(T& a, T& b);
 
 public:

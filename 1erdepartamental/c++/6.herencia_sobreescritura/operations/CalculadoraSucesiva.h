@@ -3,6 +3,7 @@
 
 #include "../core/CalculadoraBase.h"
 
+// Implementación algorítmica - usa loops en lugar de operadores nativos
 class CalculadoraSucesiva : public CalculadoraBase {
 public:
     double multiplicar(double a, int veces) override;

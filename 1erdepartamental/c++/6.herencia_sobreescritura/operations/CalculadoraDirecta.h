@@ -3,6 +3,7 @@
 
 #include "../core/CalculadoraBase.h"
 
+// Implementación directa - usa operadores nativos de C++
 class CalculadoraDirecta : public CalculadoraBase {
 public:
     double multiplicar(double a, int veces) override;

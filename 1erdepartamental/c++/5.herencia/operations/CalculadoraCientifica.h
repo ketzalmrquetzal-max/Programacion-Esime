@@ -3,9 +3,7 @@
 
 #include "../core/CalculadoraBase.h"
 
-/**
- * Calculadora científica con funciones matemáticas
- */
+// Calculadora especializada - hereda de CalculadoraBase y agrega funciones científicas
 class CalculadoraCientifica : public CalculadoraBase {
 public:
     double raizCuadrada(double n);

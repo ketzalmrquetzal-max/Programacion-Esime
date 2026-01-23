@@ -3,12 +3,10 @@
 
 #include "../interfaces/ICalculadora.h"
 
-/**
- * Clase base abstracta para calculadoras
- */
+// Clase base abstracta - define comportamiento común
 class CalculadoraBase : public ICalculadora {
 protected:
-    double __resultado;
+    double __resultado;  // Protected permite acceso a clases hijas
 
 public:
     CalculadoraBase();

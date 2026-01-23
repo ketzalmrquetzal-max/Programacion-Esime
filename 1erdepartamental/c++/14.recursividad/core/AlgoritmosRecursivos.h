@@ -1,6 +1,7 @@
 #ifndef ALGORITMOS_RECURSIVOS_H
 #define ALGORITMOS_RECURSIVOS_H
 
+// Algoritmos clásicos implementados con recursividad
 class AlgoritmosRecursivos {
 private:
     void validarNoNegativo(int n) const;
