@@ -1,8 +1,7 @@
-#include <iostream>
-#include "menu.h"
-using namespace std;
+#include "utils/Menu.h"
 
 int main() {
-    menu calc_Esime;
+    Menu menu;
+    menu.ejecutar();
     return 0;
 }
