@@ -1,0 +1,27 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#d1c4e9,stroke:#512da8,stroke-width:2px;
+    classDef interfaceClass fill:#e0e0e0,stroke:#616161,stroke-width:1px;
+
+    class TipoDatoArreglo~T~ {
+        -datos: vector~T~
+        -capacidad: size_t
+        +agregar(elemento: T): void
+        +obtener(indice: int): T
+        +eliminar(indice: int): void
+        +buscar(elemento: T): int
+    }
+
+    class ICollection~T~ {
+        <<interface>>
+        +agregar(e: T)
+        +obtener(i: int)
+    }
+
+    %% Relaciones
+    ICollection~T~ <|.. TipoDatoArreglo~T~ : Implementa
+
+    note for TipoDatoArreglo~T~ "Wrapper genérico (Template)\npara manejo seguro de vectores"
+    
+    class TipoDatoArreglo mainClass
+    class ICollection interfaceClass

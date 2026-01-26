@@ -1,0 +1,23 @@
+classDiagram
+    %% Estilos
+    classDef interfaceClass fill:#f5f5f5,stroke:#616161,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef implementationClass fill:#b2dfdb,stroke:#004d40,stroke-width:2px;
+
+    class IOrdenador~T~ {
+        <<interface>>
+        +ordenar(datos: vector~T~&)
+    }
+
+    class OrdenadorMerge~T~ {
+        -fusiones: int
+        -fusionar(arr: vector~T~&, izq: int, med: int, der: int)
+        -mergeSortRecursivo(arr: vector~T~&, izq: int, der: int)
+        +ordenar(datos: vector~T~&)
+    }
+
+    IOrdenador~T~ <|.. OrdenadorMerge~T~ : Implementa
+
+    note for OrdenadorMerge~T~ "Algoritmo Divide y Vencerás O(n log n)\nEstable pero requiere memoria extra"
+
+    class IOrdenador interfaceClass
+    class OrdenadorMerge implementationClass

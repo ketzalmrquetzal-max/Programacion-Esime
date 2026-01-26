@@ -1,5 +1,6 @@
 # Carpetas a ignorar
-__pychache__/
+__pycache__/
 .vscode/
 .idea/
-
+.__pycache__
+.mermaid

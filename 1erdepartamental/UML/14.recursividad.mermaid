@@ -1,0 +1,22 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef clientClass fill:#fff9c4,stroke:#fbc02d,stroke-dasharray: 5 5;
+
+    class AlgoritmosRecursivos {
+        +factorial(n: int) long long
+        +fibonacci(n: int) long long
+        +sumaHasta(n: int) long long
+        +potenciar(base: double, exp: int) double
+    }
+
+    class Main {
+        +main()
+    }
+
+    Main ..> AlgoritmosRecursivos : <<usa>>
+
+    note for AlgoritmosRecursivos "Colección de métodos estáticos\nque implementan recursión pura"
+
+    class AlgoritmosRecursivos mainClass
+    class Main clientClass

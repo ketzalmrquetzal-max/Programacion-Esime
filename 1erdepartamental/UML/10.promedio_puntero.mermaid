@@ -1,0 +1,26 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#bbdefb,stroke:#0d47a1,stroke-width:2px;
+    classDef utilityClass fill:#ffe0b2,stroke:#e65100,stroke-width:1px;
+
+    class EstadisticasPuntero {
+        -datos: vector~double~
+        +EstadisticasPuntero(arreglo: vector~double~)
+        +suma(): double
+        +promedio(): double
+        +maximo(): double
+        +minimo(): double
+    }
+
+    class Puntero {
+        <<utility>>
+        +aritmetica(dir: T*): void
+    }
+
+    %% Relaciones
+    EstadisticasPuntero ..> Puntero : <<usa internamente>>
+    
+    note for EstadisticasPuntero "Realiza cálculos accediendo a memoria\ndirectamente mediante punteros"
+    
+    class EstadisticasPuntero mainClass
+    class Puntero utilityClass

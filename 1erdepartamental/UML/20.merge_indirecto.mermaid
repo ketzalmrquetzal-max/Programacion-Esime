@@ -1,0 +1,21 @@
+classDiagram
+    class IOrdenador~T~ {
+        <<interface>>
+        +ordenar(datos: vector~T~&): void
+    }
+    
+    class OrdenadorMergeIndirecto~T~ {
+        <<template~T~>>
+        -fusiones: int
+        -indices: vector~int~*
+        -fusionar(arr: vector~T~&, izq: int, medio: int, der: int): void
+        -mergeSortRecursivo(arr: vector~T~&, izq: int, der: int): void
+        +OrdenadorMergeIndirecto()
+        +getFusiones(): int
+        +ordenar(datos: vector~T~&): void
+        +obtenerIndices(): vector~int~
+    }
+    
+    IOrdenador~T~ <|.. OrdenadorMergeIndirecto~T~
+    
+    note for OrdenadorMergeIndirecto~T~ "Merge Sort con acceso indirecto\nvía arreglo de índices"

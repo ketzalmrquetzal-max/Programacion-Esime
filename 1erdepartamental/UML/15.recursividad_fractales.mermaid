@@ -1,0 +1,22 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#e0f2f1,stroke:#00695c,stroke-width:2px;
+    classDef graphicsClass fill:#f8bbd0,stroke:#c2185b,stroke-width:1px;
+
+    class GeneradorFractales {
+        +sierpinski(nivel: int)
+        +arbolBinario(nivel: int, x: double, y: double, angulo: double, len: double)
+        +copoNieve(nivel: int)
+        +curvaKoch(nivel: int, x1: double, y1: double, x2: double, y2: double)
+    }
+
+    class GraphicsEngine {
+        +drawLine(x1, y1, x2, y2)
+    }
+
+    GeneradorFractales ..> GraphicsEngine : <<dibuja en>>
+
+    note for GeneradorFractales "Generación geométrica recursiva\npara visualización gráfica"
+
+    class GeneradorFractales mainClass
+    class GraphicsEngine graphicsClass

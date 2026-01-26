@@ -1,0 +1,21 @@
+classDiagram
+    class IOrdenador~T~ {
+        <<interface>>
+        +ordenar(datos: vector~T~&): void
+    }
+    
+    class OrdenadorQuickIndirecto~T~ {
+        <<template~T~>>
+        -particiones: int
+        -indices: vector~int~*
+        -particionar(arr: vector~T~&, bajo: int, alto: int): int
+        -quickSortRecursivo(arr: vector~T~&, bajo: int, alto: int): void
+        +OrdenadorQuickIndirecto()
+        +getParticiones(): int
+        +ordenar(datos: vector~T~&): void
+        +obtenerIndices(): vector~int~
+    }
+    
+    IOrdenador~T~ <|.. OrdenadorQuickIndirecto~T~
+    
+    note for OrdenadorQuickIndirecto~T~ "Quick Sort con acceso indirecto\npara evitar copias de objetos grandes"

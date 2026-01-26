@@ -1,0 +1,21 @@
+classDiagram
+    class IOrdenador~T~ {
+        <<interface>>
+        +ordenar(datos: vector~T~&): void
+    }
+    
+    class OrdenadorBurbujaIndirecto~T~ {
+        <<template~T~>>
+        -comparaciones: int
+        -intercambios: int
+        -indices: vector~int~*
+        +OrdenadorBurbujaIndirecto()
+        +getComparaciones(): int
+        +getIntercambios(): int
+        +ordenar(datos: vector~T~&): void
+        +obtenerIndices(): vector~int~
+    }
+    
+    IOrdenador~T~ <|.. OrdenadorBurbujaIndirecto~T~
+    
+    note for OrdenadorBurbujaIndirecto~T~ "Ordena usando índices indirectos\nen lugar de mover elementos"

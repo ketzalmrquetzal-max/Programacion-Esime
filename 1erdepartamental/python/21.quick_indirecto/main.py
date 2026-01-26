@@ -6,7 +6,7 @@ Demuestra quick sort sin modificar el arreglo original
 from core.ordenador import OrdenadorIndirectoQuick
 #Punto de entrada 
 if __name__ == "__main__":
-    numeros = [64, 34, 25, 12, 22, 11, 90]
+    numeros = [64, 14, 25, 43, 22, 11, 90]
 
     ordenador = OrdenadorIndirectoQuick(numeros)
 

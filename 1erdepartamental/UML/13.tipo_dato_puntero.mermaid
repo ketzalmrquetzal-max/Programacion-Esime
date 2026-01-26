@@ -1,0 +1,37 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#ffccbc,stroke:#bf360c,stroke-width:2px;
+    classDef memoryClass fill:#cfd8dc,stroke:#455a64,stroke-width:1px;
+    classDef clientClass fill:#fff9c4,stroke:#fbc02d,stroke-dasharray: 5 5;
+
+    class TipoDatoPuntero~T~ {
+        -datos: T*
+        -capacidad: size_t
+        -tamanio: size_t
+        +TipoDatoPuntero(cap: size_t)
+        +~TipoDatoPuntero()
+        +agregar(elemento: T): void
+        +obtener(indice: int): T
+        +redimensionar(nuevaCap: size_t): void
+        +getTamanio(): size_t
+    }
+
+    class HeapMemory {
+        <<System>>
+        +new
+        +delete
+    }
+
+    class Main {
+        +main()
+    }
+
+    %% Relaciones
+    TipoDatoPuntero ..> HeapMemory : <<gestiona>>
+    Main ..> TipoDatoPuntero : <<usa>>
+
+    note for TipoDatoPuntero~T~ "Gestión manual de memoria dinámica\nSimula el comportamiento de un Vector"
+
+    class TipoDatoPuntero mainClass
+    class HeapMemory memoryClass
+    class Main clientClass

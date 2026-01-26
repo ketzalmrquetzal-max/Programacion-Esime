@@ -1,0 +1,28 @@
+classDiagram
+    %% Estilos
+    classDef mainClass fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px;
+    classDef dependencyClass fill:#f0f4c3,stroke:#827717,stroke-dasharray: 5 5;
+
+    class Matriz {
+        -datos: vector~vector~double~~
+        -filas: size_t
+        -columnas: size_t
+        +Matriz(filas: size_t, columnas: size_t)
+        +set(i: size_t, j: size_t, valor: double)
+        +get(i: size_t, j: size_t): double
+        +operator*(escalar: double): Matriz
+        +operator*(otra: Matriz): Matriz
+    }
+
+    class SistemaLineal {
+        +resolver()
+    }
+
+    %% Relaciones
+    SistemaLineal ..> Matriz : <<utiliza>>
+    Matriz ..> Matriz : <<multiplica>>
+
+    note for Matriz "Implementa álgebra lineal básica\ncon sobrecarga de operadores"
+
+    class Matriz mainClass
+    class SistemaLineal dependencyClass
